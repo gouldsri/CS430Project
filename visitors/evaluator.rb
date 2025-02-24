@@ -9,6 +9,7 @@ class Evaluator
   def visit_boolean(node)
     node.value
   end
+
   # Arithmetic Operations
   def visit_add(node)
     left = node.left.visit(self)
@@ -44,4 +45,22 @@ class Evaluator
     operand = node.operand.visit(self)
     -operand
   end
+
+  # Logical Operations
+  def visit_logical_and(node)
+    left = node.left.visit(self)
+    right = node.right.visit(self)
+    left && right
+  end
+  def visit_logical_or(node)
+    left = node.left.visit(self)
+    right = node.right.visit(self)
+    left || right
+  end
+  def visit_logical_not(node)
+    operand = node.operand.visit(self)
+    !operand
+  end
+
+  
 end

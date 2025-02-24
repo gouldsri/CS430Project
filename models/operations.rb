@@ -72,9 +72,9 @@ class LogicalOr < BinaryOperation
   end
 end
 
-class BitwiseAnd < BinaryOperation
+class LogicalNot < UnaryOperation
   def visit(visitor)
-    visitor.visit_bitwise_and(self)
+    visitor.visit_logical_not(self)
   end
 end
 
