@@ -20,55 +20,55 @@ class Evaluator
   def visit_add(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(NumericPrimitive) && right.is_a?(NumericPrimitive)
+    if node.left.is_a?(NumericPrimitive) && node.right.is_a?(NumericPrimitive)
       left + right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def visit_subtract(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(NumericPrimitive) && right.is_a?(NumericPrimitive)
+    if node.left.is_a?(NumericPrimitive) && node.right.is_a?(NumericPrimitive)
       left - right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def visit_multiply(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(NumericPrimitive) && right.is_a?(NumericPrimitive)
+    if node.left.is_a?(NumericPrimitive) && node.right.is_a?(NumericPrimitive)
       left * right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def visit_divide(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(NumericPrimitive) && right.is_a?(NumericPrimitive)
+    if node.left.is_a?(NumericPrimitive) && node.right.is_a?(NumericPrimitive)
       left / right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def visit_modulus(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(NumericPrimitive) && right.is_a?(NumericPrimitive)
+    if node.left.is_a?(NumericPrimitive) && node.right.is_a?(NumericPrimitive)
       left % right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def visit_exponent(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(NumericPrimitive) && right.is_a?(NumericPrimitive)
+    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
       left ** right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def visit_negate(node)
@@ -84,19 +84,19 @@ class Evaluator
   def visit_logical_and(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(BooleanPrimitive) && right.is_a?(BooleanPrimitive)
+    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
       left && right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def visit_logical_or(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(BooleanPrimitive) && right.is_a?(BooleanPrimitive)
+    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
       left || right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def visit_logical_not(node)
@@ -115,28 +115,28 @@ class Evaluator
   def bitwise_and(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(IntegerPrimitive) && right.is_a?(IntegerPrimitive)
+    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
       left & right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def bitwise_or(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(IntegerPrimitive) && right.is_a?(IntegerPrimitive)
+    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
       left | right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def bitwise_xor(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(IntegerPrimitive) && right.is_a?(IntegerPrimitive)
+    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
       left ^ right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def bitwise_not(node)
@@ -150,19 +150,19 @@ class Evaluator
   def bitwise_shift_left(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(IntegerPrimitive) && right.is_a?(IntegerPrimitive)
+    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
       left << right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def bitwise_shift_right(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(IntegerPrimitive) && right.is_a?(IntegerPrimitive)
+    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
       left >> right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
 
@@ -170,55 +170,55 @@ class Evaluator
   def visit_equals(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(NumericPrimitive) && right.is_a?(NumericPrimitive)
+    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
       left == right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def visit_not_equals(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(NumericPrimitive) && right.is_a?(NumericPrimitive)
+    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
       left != right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def visit_less_than(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(NumericPrimitive) && right.is_a?(NumericPrimitive)
+    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
       left < right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def visit_less_than_or_equals(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(NumericPrimitive) && right.is_a?(NumericPrimitive)
+    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
       left <= right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def visit_greater_than(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(NumericPrimitive) && right.is_a?(NumericPrimitive)
+    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
       left > right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
   def visit_greater_than_or_equals(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if left.is_a?(NumericPrimitive) && right.is_a?(NumericPrimitive)
+    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
       left >= right
     else
-      raise "Unsupported operation for #{left.class} and #{right.class}"
+      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
     end
   end
 
