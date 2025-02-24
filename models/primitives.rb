@@ -1,6 +1,16 @@
 require_relative 'expression'
 
-class IntegerPrimitive < Expression
+class NumericPrimitive < Expression
+  attr_reader :value
+  def initialize(value)
+    @value = value
+  end
+  def visit(visitor)
+    visitor.visit_numeric(self)
+  end
+end
+
+class IntegerPrimitive < NumericPrimitive
   attr_reader :value
   def initialize(value)
     @value = value
@@ -10,7 +20,7 @@ class IntegerPrimitive < Expression
   end
 end
 
-class FloatPrimitive < Expression
+class FloatPrimitive < NumericPrimitive
   attr_reader :value
   def initialize(value)
     @value = value

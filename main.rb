@@ -13,6 +13,8 @@ expr7 = Modulus.new(IntegerPrimitive.new(10), IntegerPrimitive.new(3))
 expr8 = LogicalAnd.new(BooleanPrimitive.new(true), BooleanPrimitive.new(false))
 expr9 = LogicalOr.new(BooleanPrimitive.new(true), expr8)
 expr10 = LogicalNot.new(expr9)
+expr11 = LogicalNot.new(expr2)
+
 
 serializer = Serializer.new
 puts expr1.visit(serializer) # ((37 * 13) + 2)
@@ -25,6 +27,7 @@ puts expr7.visit(serializer) # (10 % 3)
 puts expr8.visit(serializer) # (true AND false)
 puts expr9.visit(serializer) # (true OR (true AND false))
 puts expr10.visit(serializer) # NOT ((true OR (true AND false)))
+puts expr11.visit(serializer) # NOT ((5 + 3))
 
 
 evaluator = Evaluator.new
@@ -38,3 +41,4 @@ puts expr7.visit(evaluator) # 1
 puts expr8.visit(evaluator) # false
 puts expr9.visit(evaluator) # true
 puts expr10.visit(evaluator) # false
+puts expr11.visit(evaluator) # false
