@@ -14,14 +14,23 @@ class Serializer
   def visit_add(node)
     "(#{node.left.visit(self)} + #{node.right.visit(self)})"
   end
-  def visit_multiply(node)
-    "(#{node.left.visit(self)} * #{node.right.visit(self)})"
-  end
   def visit_subtract(node)
     "(#{node.left.visit(self)} - #{node.right.visit(self)})"
   end
+  def visit_multiply(node)
+    "(#{node.left.visit(self)} * #{node.right.visit(self)})"
+  end
   def visit_divide(node)
     "(#{node.left.visit(self)} / #{node.right.visit(self)})"
+  end
+  def visit_modulus(node)
+    "(#{node.left.visit(self)} % #{node.right.visit(self)})"
+  end
+  def visit_exponent(node)
+    "(#{node.left.visit(self)} ^ #{node.right.visit(self)})"
+  end
+  def visit_negate(node)
+    "-(#{node.operand.visit(self)})"
   end
 
   # Logical Operations

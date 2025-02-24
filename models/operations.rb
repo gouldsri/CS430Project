@@ -33,6 +33,24 @@ class Divide < BinaryOperation
   end
 end
 
+class Modulus < BinaryOperation
+  def visit(visitor)
+    visitor.visit_modulus(self)
+  end
+end
+
+class Exponent < BinaryOperation
+  def visit(visitor)
+    visitor.visit_exponent(self)
+  end
+end
+
+class Negate < BinaryOperation
+  def visit(visitor)
+    visitor.visit_negate(self)
+  end
+end
+
 # Logical Operations
 class LogicalAnd < BinaryOperation
   def visit(visitor)
