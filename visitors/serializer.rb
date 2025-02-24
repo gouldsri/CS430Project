@@ -41,7 +41,7 @@ class Serializer
     "(#{node.left.visit(self)} OR #{node.right.visit(self)})"
   end
   def visit_logical_not(node)
-    "NOT (#{node.operand.visit(self)})"
+    "!(#{node.operand.visit(self)})"
   end
 
   # Cell L-Value
@@ -49,16 +49,16 @@ class Serializer
 
   # Bitwise Operations
   def visit_bitwise_and(node)
-    "(#{node.left.visit(self)} AND #{node.right.visit(self)})"
+    "(#{node.left.visit(self)} & #{node.right.visit(self)})"
   end
   def visit_bitwise_or(node)
-    "(#{node.left.visit(self)} OR #{node.right.visit(self)})"
+    "(#{node.left.visit(self)} | #{node.right.visit(self)})"
   end
   def visit_bitwise_xor(node)
-    "(#{node.left.visit(self)} XOR #{node.right.visit(self)})"
+    "(#{node.left.visit(self)} ^ #{node.right.visit(self)})"
   end
   def visit_bitwise_not(node)
-    "NOT (#{node.operand.visit(self)})"
+    "~ (#{node.operand.visit(self)})"
   end
   def visit_bitwise_shift_left(node)
     "(#{node.left.visit(self)} << #{node.right.visit(self)})"
@@ -72,7 +72,7 @@ class Serializer
     "(#{node.left.visit(self)} = #{node.right.visit(self)})"
   end
   def visit_not_equals(node)
-    "(#{node.left.visit(self)} =/= #{node.right.visit(self)})"
+    "(#{node.left.visit(self)} != #{node.right.visit(self)})"
   end
   def visit_less_than(node)
     "(#{node.left.visit(self)} < #{node.right.visit(self)})"
@@ -88,6 +88,8 @@ class Serializer
   end
 
   # Casting Operations
+  def 
+
   # Statistical Functions
 
 end
