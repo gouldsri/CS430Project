@@ -9,6 +9,8 @@ class Evaluator
   def visit_boolean(node)
     node.value
   end
+  # NEEDS STRING
+  # NEEDS CELL ADDRESS
 
   # Arithmetic Operations
   def visit_add(node)
@@ -62,5 +64,10 @@ class Evaluator
     !operand
   end
 
-  
+  # Cell L-Value
+  # Cell R-Value
+  # Bitwise Operations
+  # Relational Operations
+  # Casting Operations
+  # Statistical Functions
 end

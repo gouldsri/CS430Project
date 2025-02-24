@@ -39,3 +39,5 @@ class StringPrimitive < Expression
     visitor.visit_string(self)
   end
 end
+
+# Cell Address
