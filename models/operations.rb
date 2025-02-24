@@ -156,4 +156,16 @@ class GreaterThanOrEquals < BinaryOperation
 end
 
 # Casting Operations
+class IntegerToFloat < UnaryOperation
+  def visit(visitor)
+    visitor.visit_integer_to_float(self)
+  end
+end
+
+class FloatToInteger < UnaryOperation
+  def visit(visitor)
+    visitor.visit_float_to_integer(self)
+  end
+end
+
 # Statistical Functions

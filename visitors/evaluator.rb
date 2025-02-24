@@ -131,5 +131,15 @@ class Evaluator
   end
 
   # Casting Operations
+  def visit_float_to_integer(node)
+    operand = node.operand.visit(self)
+    operand.to_i
+  end
+  def visit_integer_to_float(node)
+    operand = node.operand.visit(self)
+    operand.to_f
+  end
+
   # Statistical Functions
+  
 end

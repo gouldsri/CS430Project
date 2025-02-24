@@ -88,7 +88,12 @@ class Serializer
   end
 
   # Casting Operations
-  def 
+  def visit_float_to_integer(node)
+    "int(#{node.operand.visit(self)})"
+  end
+  def visit_integer_to_float(node)
+    "float(#{node.operand.visit(self)})"
+  end
 
   # Statistical Functions
 
