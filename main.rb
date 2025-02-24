@@ -1,17 +1,18 @@
-require_relative "ast.rb"
-require_relative "serializer.rb"
-require_relative "visitor.rb"
-require_relative "parser.rb"
-require_relative "evaluator.rb"
+require_relative 'models/primitives'
+require_relative 'models/operations'
+require_relative 'visitors/serializer'
+require_relative 'visitors/evaluator'
 
-puts "hello world"
-a = Ast::Integer.new(37)
-b = Ast::Integer.new(13)
-c = Ast::Integer.new(2)
+expr1 = Add.new(Multiply.new(IntegerPrimitive.new(37), IntegerPrimitive.new(13)), IntegerPrimitive.new(2))
+expr2 = Add.new(IntegerPrimitive.new(5), IntegerPrimitive.new(3))
+expr3 = Multiply.new(IntegerPrimitive.new(2), expr2)
 
-mult = Ast::Multiply.new(a, b)
-add = Ast::Add.new(mult, c)
+serializer = Serializer.new
+puts expr1.visit(serializer) # ((37 * 13) + 2)
+puts expr2.visit(serializer) # (5 + 3)
+puts expr3.visit(serializer) # (2 * (5 + 3))
 
-#puts add.visit(Serializer.new, nil)
-puts add.visit(Serializer.new, nil)
-puts add.visit(Evaluator.new, nil)
+evaluator = Evaluator.new
+puts expr1.visit(evaluator) # 483
+puts expr2.visit(evaluator) # 8
+puts expr3.visit(evaluator) # 16
