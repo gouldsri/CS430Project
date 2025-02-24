@@ -8,6 +8,14 @@ class BinaryOperation < Expression
   end
 end
 
+class UnaryOperation < Expression
+  attr_reader :operand
+
+  def initialize(operand)
+    @operand = operand
+  end
+end
+
 # Arithmetic Operations
 class Add < BinaryOperation
   def visit(visitor)
@@ -45,7 +53,7 @@ class Exponent < BinaryOperation
   end
 end
 
-class Negate < BinaryOperation
+class Negate < UnaryOperation
   def visit(visitor)
     visitor.visit_negate(self)
   end
