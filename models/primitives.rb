@@ -40,4 +40,13 @@ class StringPrimitive < Expression
   end
 end
 
-# Cell Address
+class CellAddress < Expression
+  attr_reader :row, :column
+  def initialize(row, column)
+    @row = row
+    @column = column
+  end
+  def visit(visitor)
+    visitor.visit_cell_address(self)
+  end
+end
