@@ -35,13 +35,13 @@ class Serializer
 
   # Logical Operations
   def visit_logical_and(node)
-    "(#{node.left.visit(self)} AND #{node.right.visit(self)})"
+    "(#{node.left.visit(self)} && #{node.right.visit(self)})"
   end
   def visit_logical_or(node)
-    "(#{node.left.visit(self)} OR #{node.right.visit(self)})"
+    "(#{node.left.visit(self)} || #{node.right.visit(self)})"
   end
   def visit_logical_not(node)
-    "!(#{node.operand.visit(self)})"
+    "!#{node.operand.visit(self)}"
   end
 
   # Cell L-Value
@@ -96,5 +96,17 @@ class Serializer
   end
 
   # Statistical Functions
+  def visit_max(node)
+    "max(#{node.operand.visit(self)})"
+  end
+  def visit_min(node)
+    "min(#{node.operand.visit(self)})"
+  end
+  def visit_mean(node)
+    "mean(#{node.operand.visit(self)})"
+  end
+  def visit_sum(node)
+    "sum(#{node.operand.visit(self)})"
+  end
 
 end
