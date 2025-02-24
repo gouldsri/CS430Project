@@ -46,7 +46,27 @@ class Serializer
 
   # Cell L-Value
   # Cell R-Value
+
   # Bitwise Operations
+  def visit_bitwise_and(node)
+    "(#{node.left.visit(self)} AND #{node.right.visit(self)})"
+  end
+  def visit_bitwise_or(node)
+    "(#{node.left.visit(self)} OR #{node.right.visit(self)})"
+  end
+  def visit_bitwise_xor(node)
+    "(#{node.left.visit(self)} XOR #{node.right.visit(self)})"
+  end
+  def visit_bitwise_not(node)
+    "NOT (#{node.operand.visit(self)})"
+  end
+  def visit_bitwise_shift_left(node)
+    "(#{node.left.visit(self)} << #{node.right.visit(self)})"
+  end
+  def visit_bitwise_shift_right(node)
+    "(#{node.left.visit(self)} >> #{node.right.visit(self)})"
+  end
+
   # Relational Operations
   # Casting Operations
   # Statistical Functions

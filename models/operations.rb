@@ -80,7 +80,44 @@ end
 
 # Cell L-Value
 # Cell R-Value
+
 # Bitwise Operations
+class BitwiseAnd < BinaryOperation
+  def visit(visitor)
+    visitor.visit_bitwise_and(self)
+  end
+end
+
+class BitwiseOr < BinaryOperation
+  def visit(visitor)
+    visitor.visit_bitwise_or(self)
+  end
+end
+
+class BitwiseXor < BinaryOperation
+  def visit(visitor)
+    visitor.visit_bitwise_xor(self)
+  end
+end
+
+class BitwiseNot < UnaryOperation
+  def visit(visitor)
+    visitor.visit_bitwise_not(self)
+  end
+end
+
+class BitwiseShiftLeft < BinaryOperation
+  def visit(visitor)
+    visitor.visit_bitwise_shift_left(self)
+  end
+end
+
+class BitwiseShiftRight < BinaryOperation
+  def visit(visitor)
+    visitor.visit_bitwise_shift_right(self)
+  end
+end
+
 # Relational Operations
 # Casting Operations
 # Statistical Functions

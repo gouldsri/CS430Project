@@ -67,6 +67,36 @@ class Evaluator
   # Cell L-Value
   # Cell R-Value
   # Bitwise Operations
+  def bitwise_and(node)
+    left = node.left.visit(self)
+    right = node.right.visit(self)
+    left & right
+  end
+  def bitwise_or(node)
+    left = node.left.visit(self)
+    right = node.right.visit(self)
+    left | right
+  end
+  def bitwise_xor(node)
+    left = node.left.visit(self)
+    right = node.right.visit(self)
+    left ^ right
+  end
+  def bitwise_not(node)
+    operand = node.operand.visit(self)
+    ~operand
+  end
+  def bitwise_shift_left(node)
+    left = node.left.visit(self)
+    right = node.right.visit(self)
+    left << right
+  end
+  def bitwise_shift_right(node)
+    left = node.left.visit(self)
+    right = node.right.visit(self)
+    left >> right
+  end
+
   # Relational Operations
   # Casting Operations
   # Statistical Functions
