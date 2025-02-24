@@ -68,6 +68,25 @@ class Serializer
   end
 
   # Relational Operations
+  def visit_equals(node)
+    "(#{node.left.visit(self)} = #{node.right.visit(self)})"
+  end
+  def visit_not_equals(node)
+    "(#{node.left.visit(self)} =/= #{node.right.visit(self)})"
+  end
+  def visit_less_than(node)
+    "(#{node.left.visit(self)} < #{node.right.visit(self)})"
+  end
+  def visit_less_than_or_equals(node)
+    "(#{node.left.visit(self)} <= #{node.right.visit(self)})"
+  end
+  def visit_greater_than(node)
+    "(#{node.left.visit(self)} > #{node.right.visit(self)})"
+  end
+  def visit_greater_than_or_equals(node)
+    "(#{node.left.visit(self)} >= #{node.right.visit(self)})"
+  end
+
   # Casting Operations
   # Statistical Functions
 

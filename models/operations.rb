@@ -119,5 +119,41 @@ class BitwiseShiftRight < BinaryOperation
 end
 
 # Relational Operations
+class Equals < BinaryOperation
+  def visit(visitor)
+    visitor.visit_equals(self)
+  end
+end
+
+class NotEquals < BinaryOperation
+  def visit(visitor)
+    visitor.visit_not_equals(self)
+  end
+end
+
+class LessThan < BinaryOperation
+  def visit(visitor)
+    visitor.visit_less_than(self)
+  end
+end
+
+class LessThanOrEquals < BinaryOperation
+  def visit(visitor)
+    visitor.visit_less_than_or_equals(self)
+  end
+end
+
+class GreaterThan < BinaryOperation
+  def visit(visitor)
+    visitor.visit_greater_than(self)
+  end
+end
+
+class GreaterThanOrEquals < BinaryOperation
+  def visit(visitor)
+    visitor.visit_greater_than_or_equals(self)
+  end
+end
+
 # Casting Operations
 # Statistical Functions

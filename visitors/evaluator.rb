@@ -66,6 +66,7 @@ class Evaluator
 
   # Cell L-Value
   # Cell R-Value
+
   # Bitwise Operations
   def bitwise_and(node)
     left = node.left.visit(self)
@@ -98,6 +99,37 @@ class Evaluator
   end
 
   # Relational Operations
+  def visit_equals(node)
+    left = node.left.visit(self)
+    right = node.right.visit(self)
+    left == right
+  end
+  def visit_not_equals(node)
+    left = node.left.visit(self)
+    right = node.right.visit(self)
+    left != right
+  end
+  def visit_less_than(node)
+    left = node.left.visit(self)
+    right = node.right.visit(self)
+    left < right
+  end
+  def visit_less_than_or_equals(node)
+    left = node.left.visit(self)
+    right = node.right.visit(self)
+    left <= right
+  end
+  def visit_greater_than(node)
+    left = node.left.visit(self)
+    right = node.right.visit(self)
+    left > right
+  end
+  def visit_greater_than_or_equals(node)
+    left = node.left.visit(self)
+    right = node.right.visit(self)
+    left >= right
+  end
+
   # Casting Operations
   # Statistical Functions
 end
