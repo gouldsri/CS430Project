@@ -20,63 +20,63 @@ class Evaluator
   def visit_add(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(NumericPrimitive) && node.right.is_a?(NumericPrimitive)
+    if left.is_a?(Numeric) && right.is_a?(Numeric)
       left + right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def visit_subtract(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(NumericPrimitive) && node.right.is_a?(NumericPrimitive)
+    if left.is_a?(Numeric) && right.is_a?(Numeric)
       left - right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def visit_multiply(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(NumericPrimitive) && node.right.is_a?(NumericPrimitive)
+    if left.is_a?(Numeric) && right.is_a?(Numeric)
       left * right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def visit_divide(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(NumericPrimitive) && node.right.is_a?(NumericPrimitive)
+    if left.is_a?(Numeric) && right.is_a?(Numeric)
       left / right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def visit_modulus(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(NumericPrimitive) && node.right.is_a?(NumericPrimitive)
+    if left.is_a?(Numeric) && right.is_a?(Numeric)
       left % right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def visit_exponent(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
+    if left.is_a?(Numeric) && right.is_a?(Numeric)
       left ** right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def visit_negate(node)
     operand = node.operand.visit(self)
-    if operand.is_a?(NumericPrimitive)
+    if operand.is_a?(Numeric)
       -operand
     else
-      raise "Unsupported operation for #{operand.class}"
+      raise TypeError, "Unsupported operation for #{operand.class}"
     end
   end
 
@@ -84,27 +84,27 @@ class Evaluator
   def visit_logical_and(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
+    if (left.is_a?(TrueClass) || left.is_a?(FalseClass)) && (right.is_a?(TrueClass) || right.is_a?(FalseClass))
       left && right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def visit_logical_or(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
+    if (left.is_a?(TrueClass) || left.is_a?(FalseClass)) && (right.is_a?(TrueClass) || right.is_a?(FalseClass))
       left || right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def visit_logical_not(node)
     operand = node.operand.visit(self)
-    if operand.is_a?(BooleanPrimitive)
+    if operand.is_a?(TrueClass) || operand.is_a?(FalseClass)
       !operand
     else
-      raise "Unsupported operation for #{operand.class}"
+      raise TypeError, "Unsupported operation for #{operand.class}"
     end
   end
 
@@ -115,54 +115,54 @@ class Evaluator
   def bitwise_and(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
+    if left.is_a?(Integer) && right.is_a?(Integer)
       left & right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def bitwise_or(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
+    if left.is_a?(Integer) && right.is_a?(Integer)
       left | right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def bitwise_xor(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
+    if left.is_a?(Integer) && right.is_a?(Integer)
       left ^ right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def bitwise_not(node)
     operand = node.operand.visit(self)
-    if operand.is_a?(IntegerPrimitive)
+    if operand.is_a?(Integer)
       ~operand
     else
-      raise "Unsupported operation for #{operand.class}"
+      raise TypeError, "Unsupported operation for #{operand.class}"
     end
   end
   def bitwise_shift_left(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
+    if left.is_a?(Integer) && right.is_a?(Integer)
       left << right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def bitwise_shift_right(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
+    if left.is_a?(Integer) && right.is_a?(Integer)
       left >> right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
 
@@ -170,73 +170,73 @@ class Evaluator
   def visit_equals(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
+    if left.is_a?(Numeric) && right.is_a?(Numeric)
       left == right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def visit_not_equals(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
+    if left.is_a?(Numeric) && right.is_a?(Numeric)
       left != right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def visit_less_than(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
+    if left.is_a?(Numeric) && right.is_a?(Numeric)
       left < right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def visit_less_than_or_equals(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
+    if left.is_a?(Numeric) && right.is_a?(Numeric)
       left <= right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def visit_greater_than(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
+    if left.is_a?(Numeric) && right.is_a?(Numeric)
       left > right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
   def visit_greater_than_or_equals(node)
     left = node.left.visit(self)
     right = node.right.visit(self)
-    if node.left.is_a?(IntegerPrimitive) && node.right.is_a?(IntegerPrimitive)
+    if left.is_a?(Numeric) && right.is_a?(Numeric)
       left >= right
     else
-      raise "Unsupported operation for #{node.left.class} and #{node.right.class}"
+      raise TypeError, "Unsupported operation for #{left.class} and #{right.class}"
     end
   end
 
   # Casting Operations
   def visit_float_to_integer(node)
     operand = node.operand.visit(self)
-    if operand.is_a?(FloatPrimitive)
+    if operand.is_a?(Float)
       operand.to_i
     else
-      raise "Unsupported operation for #{operand.class}"
+      raise TypeError, "Unsupported operation for #{operand.class}"
     end
   end
   def visit_integer_to_float(node)
     operand = node.operand.visit(self)
-    if operand.is_a?(IntegerPrimitive)
+    if operand.is_a?(Integer)
       operand.to_f
     else
-      raise "Unsupported operation for #{operand.class}"
+      raise TypeError, "Unsupported operation for #{operand.class}"
     end
   end
 

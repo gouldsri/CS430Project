@@ -41,4 +41,10 @@ puts expr7.visit(evaluator) # 1
 puts expr8.visit(evaluator) # false
 puts expr9.visit(evaluator) # true
 puts expr10.visit(evaluator) # false
+# try/catch for TypeError
+
+begin
 puts expr11.visit(evaluator) # false
+rescue TypeError => e
+  puts e.message
+end
